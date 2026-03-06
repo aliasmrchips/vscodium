@@ -81,7 +81,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: . check_tags.sh
-        if: env.SHOULD_DEPLOY == 'yes'
+        if: false && env.SHOULD_DEPLOY == 'yes'
 
       - name: Build
         env:
