@@ -828,8 +828,8 @@ index 6956d79..ea5fa28 100644
  						Severity.Info,
 -						vsixs.length > 1 ? localize('InstallVSIXs.successReload', "Completed installing extensions. Please reload Visual Studio Code to enable them.")
 -							: localize('InstallVSIXAction.successReload', "Completed installing extension. Please reload Visual Studio Code to enable it."),
-+						vsixs.length > 1 ? localize('InstallVSIXs.successReload', "Completed installing extensions. Please reload VSCodium to enable them.")
-+							: localize('InstallVSIXAction.successReload', "Completed installing extension. Please reload VSCodium to enable it."),
++						vsixs.length > 1 ? localize('InstallVSIXs.successReload', "Completed installing extensions. Please reload Dekstra to enable them.")
++							: localize('InstallVSIXAction.successReload', "Completed installing extension. Please reload Dekstra to enable it."),
  						[{
 diff --git a/src/vs/workbench/contrib/extensions/browser/extensionsActions.ts b/src/vs/workbench/contrib/extensions/browser/extensionsActions.ts
 index f2a1f70..4bbabd2 100644

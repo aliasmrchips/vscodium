@@ -17,11 +17,11 @@ index ed36151..5b040cc 100644
 -native-keymap/src/**
 -native-keymap/deps/**
 -!native-keymap/build/Release/*.node
-+@vscodium/native-keymap/binding.gyp
-+@vscodium/native-keymap/build/**
-+@vscodium/native-keymap/src/**
-+@vscodium/native-keymap/deps/**
-+!@vscodium/native-keymap/build/Release/*.node
++@dekstra/native-keymap/binding.gyp
++@dekstra/native-keymap/build/**
++@dekstra/native-keymap/src/**
++@dekstra/native-keymap/deps/**
++!@dekstra/native-keymap/build/Release/*.node
  
 diff --git a/eslint.config.js b/eslint.config.js
 index 47eeebf..f8077c2 100644
@@ -30,7 +30,7 @@ index 47eeebf..f8077c2 100644
 @@ -1465,3 +1465,3 @@ export default tseslint.config(
  						'node:module',
 -						'native-keymap',
-+						'@vscodium/native-keymap',
++						'@dekstra/native-keymap',
  						'net',
 diff --git a/package-lock.json b/package-lock.json
 index 801e87b..a991591 100644
@@ -38,7 +38,7 @@ index 801e87b..a991591 100644
 +++ b/package-lock.json
 @@ -32,2 +32,3 @@
          "@vscode/windows-registry": "^1.1.0",
-+        "@vscodium/native-keymap": "3.3.7-258424",
++        "@dekstra/native-keymap": "3.3.7-258424",
          "@xterm/addon-clipboard": "^0.3.0-beta.109",
 @@ -49,3 +50,2 @@
          "native-is-elevated": "0.9.0",
@@ -46,9 +46,9 @@ index 801e87b..a991591 100644
          "node-pty": "^1.2.0-beta.10",
 @@ -3674,2 +3674,9 @@
      },
-+    "node_modules/@vscodium/native-keymap": {
++    "node_modules/@dekstra/native-keymap": {
 +      "version": "3.3.7-258424",
-+      "resolved": "https://registry.npmjs.org/@vscodium/native-keymap/-/native-keymap-3.3.7-258424.tgz",
++      "resolved": "https://registry.npmjs.org/@dekstra/native-keymap/-/native-keymap-3.3.7-258424.tgz",
 +      "integrity": "sha512-HZ20QfExV0kE2l939yE3wn0LezSV7BcpxOFmlUMUHBQbdANMSLkwzo6Zw1xOEZDoYm3VTDHt8/+WwLBR2MpA3A==",
 +      "hasInstallScript": true,
 +      "license": "MIT"
@@ -96,7 +96,7 @@ index efeaec1..b2a6703 100644
 @@ -111,3 +111,3 @@
      "native-is-elevated": "0.9.0",
 -    "native-keymap": "^3.3.5",
-+    "@vscodium/native-keymap": "3.3.7-258424",
++    "@dekstra/native-keymap": "3.3.7-258424",
      "node-pty": "^1.2.0-beta.10",
 diff --git a/src/vs/platform/environment/test/node/nativeModules.integrationTest.ts b/src/vs/platform/environment/test/node/nativeModules.integrationTest.ts
 index c30c6da..ca6cea2 100644
@@ -107,13 +107,13 @@ index c30c6da..ca6cea2 100644
 -		const keyMap = await import('native-keymap');
 -		assert.ok(typeof keyMap.onDidChangeKeyboardLayout === 'function', testErrorMessage('native-keymap'));
 -		assert.ok(typeof keyMap.getCurrentKeyboardLayout === 'function', testErrorMessage('native-keymap'));
-+		const keyMap = await import('@vscodium/native-keymap');
-+		assert.ok(typeof keyMap.onDidChangeKeyboardLayout === 'function', testErrorMessage('@vscodium/native-keymap'));
-+		assert.ok(typeof keyMap.getCurrentKeyboardLayout === 'function', testErrorMessage('@vscodium/native-keymap'));
++		const keyMap = await import('@dekstra/native-keymap');
++		assert.ok(typeof keyMap.onDidChangeKeyboardLayout === 'function', testErrorMessage('@dekstra/native-keymap'));
++		assert.ok(typeof keyMap.getCurrentKeyboardLayout === 'function', testErrorMessage('@dekstra/native-keymap'));
  
  		const result = keyMap.getCurrentKeyboardLayout();
 -		assert.ok(result, testErrorMessage('native-keymap'));
-+		assert.ok(result, testErrorMessage('@vscodium/native-keymap'));
++		assert.ok(result, testErrorMessage('@dekstra/native-keymap'));
  	});
 diff --git a/src/vs/platform/keyboardLayout/electron-main/keyboardLayoutMainService.ts b/src/vs/platform/keyboardLayout/electron-main/keyboardLayoutMainService.ts
 index 8950ce2..f31cea6 100644
@@ -122,10 +122,10 @@ index 8950ce2..f31cea6 100644
 @@ -5,3 +5,3 @@
  
 -import type * as nativeKeymap from 'native-keymap';
-+import type * as nativeKeymap from '@vscodium/native-keymap';
++import type * as nativeKeymap from '@dekstra/native-keymap';
  import * as platform from '../../../base/common/platform.js';
 @@ -48,3 +48,3 @@ export class KeyboardLayoutMainService extends Disposable implements INativeKeyb
  	private async _doInitialize(): Promise<void> {
 -		const nativeKeymapMod = await import('native-keymap');
-+		const nativeKeymapMod = await import('@vscodium/native-keymap');
++		const nativeKeymapMod = await import('@dekstra/native-keymap');
  
