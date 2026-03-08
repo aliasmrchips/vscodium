@@ -46,7 +46,7 @@ jobs:
         include:
           - runner: macos-15-intel
             vscode_arch: x64
-          - runner: [macOS, ARM64]
+          - runner: macos-latest
             vscode_arch: arm64
 
     steps:
